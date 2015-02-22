@@ -22,3 +22,33 @@ ggplot(data=iris, aes(Sepal.Length, Sepal.Width, color=Species))+geom_point(aes(
 d2<-diamonds[sample(1:dim(diamonds)[1],1000),]
 
 ggplot(data=d2,aes(carat,price,color=color))+geom_point(size=3)
+
+library(MASS)
+ggplot(birthwt, aes(factor(race),bwt))+geom_boxplot()
+
+myplot <-ggplot(birthwt, aes(factor(race),bwt))+geom_boxplot()
+summary(myplot)
+
+#Facets
+ggplot(data=iris, aes(Sepal.Length, Sepal.Width, color=Species))+
+  geom_point(size=3)+
+  facet_grid(Species ~ .)
+
+#or
+ggplot(data=iris, aes(Sepal.Length, Sepal.Width, color=Species))+
+  geom_point(size=3)+
+  facet_grid(. ~ Species)
+
+#wrap
+ggplot(data=iris, aes(Sepal.Length, Sepal.Width, color=Species))+
+  geom_point(size=3)+
+  facet_grid( ~ Species)
+
+# df variable obtained earlier in the script
+library(RColorBrewer)
+library(reshape2)
+ggplot(df,aes(Species,value,fill=variable))+
+  geom_bar(stat="identity",position="dodge")+
+  scale_fill_brewer(palette="Set1")
+
+
